@@ -2,11 +2,13 @@ package br.edu.avaliacao.gestao_indicadores.model;
 
 import jakarta.persistence.*;
 import java.util.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "cursos")
+@Table(name = "curso")
 public class Curso {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable=false, length=100)
@@ -22,13 +24,25 @@ public class Curso {
     private Integer duracaoSemestres;
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore   // evita recursão na serialização
     private List<Aluno> alunos = new ArrayList<>();
 
     // getters/setters
-    public Long getId() { return id; } public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; } public void setNome(String nome) { this.nome = nome; }
-    public String getSigla() { return sigla; } public void setSigla(String sigla) { this.sigla = sigla; }
-    public String getDescricao() { return descricao; } public void setDescricao(String descricao) { this.descricao = descricao; }
-    public Integer getDuracaoSemestres() { return duracaoSemestres; } public void setDuracaoSemestres(Integer duracaoSemestres) { this.duracaoSemestres = duracaoSemestres; }
-    public List<Aluno> getAlunos() { return alunos; } public void setAlunos(List<Aluno> alunos) { this.alunos = alunos; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getSigla() { return sigla; }
+    public void setSigla(String sigla) { this.sigla = sigla; }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public Integer getDuracaoSemestres() { return duracaoSemestres; }
+    public void setDuracaoSemestres(Integer duracaoSemestres) { this.duracaoSemestres = duracaoSemestres; }
+
+    public List<Aluno> getAlunos() { return alunos; }
+    public void setAlunos(List<Aluno> alunos) { this.alunos = alunos; }
 }

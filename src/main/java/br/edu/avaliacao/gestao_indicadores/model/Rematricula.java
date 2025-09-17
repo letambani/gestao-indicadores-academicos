@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="rematriculas")
+@Table(name="rematricula")
 public class Rematricula {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
